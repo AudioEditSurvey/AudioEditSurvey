@@ -29,8 +29,7 @@
 
 # What's New
 
-- **2026.xx.xx:** We release the initial repository of **AudioEditSurvey**.
-- **2026.xx.xx:** The paper and full paper list will be updated soon.
+- **2026.5.18:** The paper and full paper list will be updated soon.
 
 ---
 
@@ -38,10 +37,10 @@
 
 This repository maintains the project page and paper list for **AudioEditSurvey: Foundation-Model Era Audio Editing**.
 
-Audio editing is moving from low-level waveform manipulation and expert-designed digital audio workstation operations toward high-level, instruction-driven, and reference-guided generative editing. In the foundation-model era, users can edit speech, music, and general audio through natural language instructions, reference audio, symbolic controls, masks, or temporal regions. This survey aims to provide a systematic overview of recent progress in audio editing, covering task formulation, taxonomy, model architectures, training paradigms, training-free editing strategies, datasets, evaluation protocols, and open challenges.
 
 > **Abstract**  
-> Recent foundation models have significantly advanced audio generation and understanding, enabling audio editing systems that can modify speech, music, and general sound according to natural language instructions, reference samples, masks, or other multimodal controls. Compared with traditional signal-processing or DAW-based editing, foundation-model-based audio editing aims to perform semantic, acoustic, and instance-level modifications while preserving non-target content and maintaining perceptual quality. Despite rapid progress, the field remains fragmented across domains, tasks, architectures, training strategies, datasets, and evaluation protocols. This survey reviews representative audio editing methods, organizes them under a unified taxonomy, summarizes core model paradigms and resources, and discusses key challenges toward controllable, faithful, efficient, and general-purpose audio editing.
+> Audio editing aims to modify a given synthetic or real-world audio signal to meet users’ specific needs. As a promising yet challenging direction in AIGC, it has attracted increasing attention in recent years. With the rapid progress of text-to-audio and text-to-speech generation, powerful audio generation models have become the primary foundation for modern audio editing systems.
+In this survey, we provide a comprehensive review of foundation-model-based audio editing. We first define the scope of audio editing from a unified perspective and present a detailed taxonomy of existing editing tasks. We then summarize the major foundation-model paradigms for audio editing, and review representative approaches from both training-based and training-free perspectives. In addition, we systematically discuss related resources, including datasets, data construction tools, and evaluation protocols. Finally, we identify open challenges in this field and outline promising directions for future research.
 
 ---
 
