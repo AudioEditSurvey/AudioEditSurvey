@@ -47,9 +47,8 @@ This repository maintains the project page and paper list for **AudioEditSurvey:
 
 ## Scope
 
-This survey focuses on works that make direct contributions to **audio editing in the era of foundation models**. We define audio editing as modifying the acoustic attributes, instances, or semantic content of an existing audio recording, without transformations so substantial that they amount to generating an entirely new audio sample.
-
-Accordingly, this survey mainly includes methods that rely on mainstream audio foundation model paradigms. We do not aim to comprehensively cover pure audio generation, signal-processing-based editing workflows, or spatial audio editing.
+In this survey, we focus on works that make direct contributions to audio editing in the era of foundation models. To ensure a precise and focused discussion, we adopt two main inclusion criteria: (1) the task should center on audio editing, which we define as modifying the acoustic attributes, instances, or content of an existing audio recording, without transformations so substantial that they amount to generating an entirely new audio sample; (2) the method should rely on mainstream audio foundation model paradigms.
+Accordingly, we do not cover works primarily focused on audio generation, nor do we provide an extensive discussion of signal-processing-based audio editing methods. In addition, to maintain a focused scope, spatial audio\footnote{Spatial audio refers to multi-channel audio formats, such as binaural stereo and first-order Ambisonics (FOA).} and related editing techniques are beyond the main scope of this survey.
 
 ---
 
@@ -60,14 +59,12 @@ Accordingly, this survey mainly includes methods that rely on mainstream audio f
 
 Figure 1: Organization of the survey.
 
-The survey is organized around four main perspectives: **editing tasks**, **foundation-model architectures**, **learning paradigms**, and **resources**. It first introduces the scope and taxonomy of audio editing, then reviews foundation-model paradigms and representative methods from both training-based and training-free perspectives, and finally summarizes datasets, data construction tools, evaluation protocols, and future challenges.
+
 
 ### Taxonomy of Audio Editing
 
 
-Figure 2: A high-level taxonomy of audio editing.
 
-To systematically organize audio editing in the foundation-model era, we categorize existing tasks according to the primary layer of audio information edited by the model. The taxonomy contains three representative categories:
 
 | Category | Definition | Representative Editing Goals |
 |---|---|---|
@@ -106,41 +103,25 @@ To systematically organize audio editing in the foundation-model era, we categor
 
 ### 1. Early Neural Editing Models
 
-Before the foundation-model era, early neural editing methods mainly explored task-specific generative models for local reconstruction and attribute control. Although limited in scale and generalization, these methods introduced core ideas such as local generation, context-aware reconstruction, boundary consistency, and attribute-conditioned editing.
+Before the foundation-model era, early neural audio editing methods mainly explored task-specific generative models for local reconstruction and attribute control. 
 
 ### 2. Token-based Codec Language Models
 
-Token-based codec language models cast audio editing as conditional generation over discrete audio tokens. After continuous audio is converted into compact token sequences, target regions can be edited through continuation, infilling, or selective regeneration conditioned on context, prompts, or task controls.
-
-Key topics include:
-
-- neural codec and discrete audio tokenization;
-- semantic and acoustic token modeling;
-- span-level infilling and selective regeneration;
-- speech content editing and speaker-conditioned infilling;
-- context preservation under codec compression.
+Token-based codec language models cast audio editing as conditional generation over discrete audio tokens. After continuous audio is converted into compact discrete token sequences, target regions are edited through autoregressive continuation, infilling, or selective regeneration conditioned on context, prompts, or task controls.
 
 ### 3. Diffusion and Flow-Matching Models
 
-Diffusion and flow-matching models formulate audio editing as conditional transformation in continuous acoustic spaces, such as mel-spectrograms or audio latents. They modify audio through conditional denoising, latent inversion, or continuous flow transformation, making them suitable for high-fidelity reconstruction, region-level refinement, and fine-grained acoustic control.
-
-Key topics include:
-
-- latent diffusion for audio editing;
-- conditional denoising and source-conditioned regeneration;
-- mask- and region-based local editing;
-- latent inversion for real-audio editing;
-- flow matching for efficient continuous audio transformation.
+Diffusion and flow-matching models formulate audio editing as conditional transformation in continuous acoustic spaces, such as mel-spectrograms or audio latents. Instead of infilling discrete tokens, they modify audio through conditional denoising, latent inversion, or continuous flow transformation, making them suitable for high-fidelity reconstruction, region-level refinement, and fine-grained acoustic control in complex scenarios.
 
 ### 4. Audio Editing Interfaces
 
-Instruction-conditioned and multimodal interfaces provide high-level control for foundation-model-based audio editing. They allow users to specify editing intents through natural language instructions, task prompts, reference audio, temporal regions, or visual cues, which are then translated into target spans, task embeddings, event locations, speaker references, or preservation constraints.
+Instruction-conditioned and multimodal interfaces for audio editing provide high-level control for foundation-model-based audio editing. They allow users to specify editing intents through natural language instructions, task prompts, reference audio, temporal regions, or visual cues, which are shifted into target spans, task embeddings, event locations, speaker references, or preservation constraints.
 
 ---
 
 ## Training-based Audio Editing
 
-Training-based approaches learn editing behavior from supervised pairs, pseudo-pairs, or instruction-based triplets before inference. These methods explicitly optimize editing objectives, condition following, and preservation constraints, enabling stable and controllable editing.
+Training-based approaches refer to audio editing methods that learn editing behaviors from supervised pairs, pseudo-pairs, or instruction-based triplets before inference. These methods explicitly optimize editing objectives, condition following, and preservation constraints, enabling stable and controllable editing. We group existing works into three categories based on their supervision and conditioning mechanisms, and discuss their core methods and functional scopes.
 
 | Paradigm | Description | Representative Scope |
 |---|---|---|
@@ -148,13 +129,12 @@ Training-based approaches learn editing behavior from supervised pairs, pseudo-p
 | Reference- and Attribute-based Training | Specifies the editing direction through reference audio, style examples, or attribute labels. | voice conversion, timbre transfer, emotion editing, mixing style transfer |
 | Instruction-conditioned Training | Learns from instruction-input-output triplets to follow natural-language editing requests. | addition, deletion, replacement, inpainting, super-resolution, music remixing, expressive refinement |
 
-Instruction-conditioned training is especially important in the foundation-model era because it shifts audio editing from predefined task execution toward open-ended user intent following.
 
 ---
 
 ## Training-free Audio Editing
 
-Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints.
+Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into three common categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
 
 | Paradigm | Description | Representative Scope |
 |---|---|---|
@@ -163,51 +143,256 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 | Mask- and Region-Guided Editing | Specifies where to edit and where to preserve the source audio in waveform, spectrogram, latent, or source-component spaces. | localized editing, inpainting, restoration, source-level manipulation |
 | Token-Level Editing with Codec Models | Manipulates discrete audio tokens through masking, infilling, continuation, or selective regeneration at inference time. | speech infilling, localized resynthesis, codec-token editing |
 
-Training-free methods are flexible and data-efficient, but their performance remains sensitive to inversion accuracy, attention reliability, mask quality, temporal consistency, and non-target preservation.
+
 
 ---
 
 ## Resources
 
 ### Available Datasets
+Figure 3: Available Datasets
 
-| Dataset | Domain | Typical Usage |
-|---|---|---|
-| LibriSpeech-Edit | Speech | localized text-based speech editing |
-| Emilia / WenetSpeech4TTS | Speech | large-scale speech generation and editing backbone training |
-| DailyTalk / SeniorTalk | Speech | dialogue-style speech editing and conversational speech modeling |
-| AliMeeting / AMI | Speech | long-context and multi-speaker speech editing |
-| Slakh2100 | Music | multi-track music editing with stems and MIDI annotations |
-| MUSDB18 | Music | source separation, remixing, and instrument-level editing |
-| MAESTRO | Music | score- and MIDI-conditioned music modeling |
-| MusicCaps / MTG-Jamendo | Music | caption-, tag-, genre-, mood-, and instrument-conditioned music editing |
-| NSynth / GTSinger | Music | timbre, note-level, lyrics, melody, and singing voice editing |
-| AudioSet / FSD50K / ESC-50 | General Audio | sound-event modeling and event-level validation |
-| AudioCaps / Clotho / WavCaps / AudioSetCaps | General Audio | audio-language grounding and caption-based supervision |
-| VoiceBank+DEMAND / WHAM! / WHAMR! / DNS Challenge | General Audio | denoising, restoration, noisy mixtures, and reverberant mixtures |
 
 ### Data Tools
 
-Given the scarcity of complete instruction-based editing datasets, data construction tools are essential for converting raw audio into structured and reusable editing supervision.
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Method</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="10"><b>Temporal Localization Tools</b></td>
+      <td>Praat</td>
+      <td><a href="https://www.fon.hum.uva.nl/praat/">Link</a></td>
+    </tr>
+    <tr>
+      <td>Montreal Forced Aligner (MFA)</td>
+      <td><a href="https://arxiv.org/abs/1705.09525">Link</a></td>
+    </tr>
+    <tr>
+      <td>WhisperX</td>
+      <td><a href="https://arxiv.org/abs/2303.00747">Link</a></td>
+    </tr>
+    <tr>
+      <td>pyannote.audio</td>
+      <td><a href="https://arxiv.org/abs/1911.01255">Link</a></td>
+    </tr>
+    <tr>
+      <td>PANNs</td>
+      <td><a href="https://arxiv.org/abs/1912.10211">Link</a></td>
+    </tr>
+    <tr>
+      <td>Parselmouth</td>
+      <td><a href="https://doi.org/10.1016/j.wocn.2018.07.001">Link</a></td>
+    </tr>
+    <tr>
+      <td>RMVPE</td>
+      <td><a href="https://arxiv.org/abs/2306.15412">Link</a></td>
+    </tr>
+    <tr>
+      <td>CREPE</td>
+      <td><a href="https://arxiv.org/abs/1802.06182">Link</a></td>
+    </tr>
+    <tr>
+      <td>ROSYOT</td>
+      <td><a href="https://aclanthology.org/2024.acl-long.526/">Link</a></td>
+    </tr>
+    <tr>
+      <td>MusicYOLO</td>
+      <td><a href="https://ieeexplore.ieee.org/abstract/document/9746684">Link</a></td>
+    </tr>
 
-| Tool Type | Function | Examples of Produced Supervision |
-|---|---|---|
-| Temporal Localization Tools | Determine where an edit should be applied. | phone/word boundaries, speaker-active segments, event boundaries, pitch and note-level cues |
-| Semantic Annotation Tools | Assign interpretable descriptions or labels to editable regions. | transcripts, captions, tags, sound-event labels, emotion labels |
-| Pair Construction Tools | Create input-output pairs or instruction-input-output triplets. | TTS-based speech pairs, voice conversion pairs, degradation-restoration pairs, separation/remixing pairs |
+    <tr>
+      <td rowspan="6"><b>Semantic Annotation Tools</b></td>
+      <td>FunASR</td>
+      <td><a href="https://arxiv.org/abs/2305.11013">Link</a></td>
+    </tr>
+    <tr>
+      <td>Whisper</td>
+      <td><a href="https://arxiv.org/abs/2212.04356">Link</a></td>
+    </tr>
+    <tr>
+      <td>HTS-AT</td>
+      <td><a href="https://arxiv.org/abs/2202.00874">Link</a></td>
+    </tr>
+    <tr>
+      <td>SELD-TCN</td>
+      <td><a href="https://ieeexplore.ieee.org/abstract/document/9287716">Link</a></td>
+    </tr>
+    <tr>
+      <td>emotion2vec</td>
+      <td><a href="https://arxiv.org/abs/2312.15185">Link</a></td>
+    </tr>
+    <tr>
+      <td>Qwen3-Omni</td>
+      <td><a href="https://arxiv.org/abs/2509.17765">Link</a></td>
+    </tr>
+
+    <tr>
+      <td rowspan="9"><b>Pair Construction Tools</b></td>
+      <td>MaskGCT</td>
+      <td><a href="https://arxiv.org/abs/2409.00750">Link</a></td>
+    </tr>
+    <tr>
+      <td>StyleTTS</td>
+      <td><a href="https://ieeexplore.ieee.org/abstract/document/10852161">Link</a></td>
+    </tr>
+    <tr>
+      <td>AutoVC</td>
+      <td><a href="https://arxiv.org/abs/1905.05879">Link</a></td>
+    </tr>
+    <tr>
+      <td>YourTTS</td>
+      <td><a href="https://arxiv.org/abs/2112.02418">Link</a></td>
+    </tr>
+    <tr>
+      <td>Open-Unmix</td>
+      <td><a href="https://joss.theoj.org/papers/10.21105/joss.01667">Link</a></td>
+    </tr>
+    <tr>
+      <td>Spleeter</td>
+      <td><a href="https://joss.theoj.org/papers/10.21105/joss.02154">Link</a></td>
+    </tr>
+    <tr>
+      <td>Demucs</td>
+      <td><a href="https://arxiv.org/abs/2111.03600">Link</a></td>
+    </tr>
+    <tr>
+      <td>AudioSep</td>
+      <td><a href="https://arxiv.org/abs/2308.05037">Link</a></td>
+    </tr>
+    <tr>
+      <td>SAM-Audio</td>
+      <td><a href="https://arxiv.org/abs/2512.18099">Link</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Evaluation Protocols and Benchmarks
 
-Audio editing evaluation must assess not only output quality, but also edit success and preservation of non-target regions. Existing protocols can be summarized along four dimensions:
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Method</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5"><b>Edit Success and Instruction Adherence</b></td>
+      <td>WER / CER</td>
+      <td><a href="https://dl.acm.org/doi/abs/10.1145/3565472.3595606">Link</a></td>
+    </tr>
+    <tr>
+      <td>emotion2vec</td>
+      <td><a href="https://arxiv.org/abs/2312.15185">Link</a></td>
+    </tr>
+    <tr>
+      <td>CLAP</td>
+      <td><a href="https://arxiv.org/abs/2206.04769">Link</a></td>
+    </tr>
+    <tr>
+      <td>Pitch and Rhythm Accuracy</td>
+      <td><a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/94b472a1842cd7c56dcb125fb2765fbd-Abstract-Conference.html">Link</a></td>
+    </tr>
 
-| Dimension | Question | Example Metrics |
-|---|---|---|
-| Edit Success and Instruction Adherence | Does the output correctly satisfy the requested edit? | human judgment, ASR-WER/CER, emotion2vec, CLAP similarity, tag accuracy, pitch or rhythm accuracy |
-| Preservation and Locality | Are regions or attributes irrelevant to the edit preserved? | speaker similarity, waveform/spectrogram/embedding similarity, PESQ, STOI, SI-SDR, preservation MOS |
-| Temporal and Structural Consistency | Does the edited output remain coherent in time and preserve relevant structure? | boundary error, WDTW, melody accuracy, Rhythm F1, dynamics correlation |
-| Audio Quality and Naturalness | Does the edited audio sound realistic, continuous, and artifact-free? | MOS, CMOS, MOSNet, DNSMOS, NISQA, FAD, AuditScore, AuditEval |
 
-Existing audio-language, audio-generation, and music-understanding benchmarks provide useful references, but a faithful benchmark specifically designed for audio editing should separately measure target modification, non-target preservation, temporal consistency, perceptual quality, and instruction following.
+    <tr>
+      <td rowspan="6"><b>Preservation and Locality</b></td>
+      <td>Speaker Similarity / X-vector</td>
+      <td><a href="https://ieeexplore.ieee.org/document/8461375">Link</a></td>
+    </tr>
+    <tr>
+      <td>Waveform / Spectrogram Similarity</td>
+      <td><a href="https://ieeexplore.ieee.org/abstract/document/9103053">Link</a></td>
+    </tr>
+    <tr>
+      <td>NOMAD</td>
+      <td><a href="https://ieeexplore.ieee.org/abstract/document/10448028">Link</a></td>
+    </tr>
+    <tr>
+      <td>PESQ</td>
+      <td><a href="https://ieeexplore.ieee.org/document/941023">Link</a></td>
+    </tr>
+    <tr>
+      <td>STOI</td>
+      <td><a href="https://ieeexplore.ieee.org/document/5495701">Link</a></td>
+    </tr>
+    <tr>
+      <td>SI-SDR</td>
+      <td><a href="https://arxiv.org/abs/1811.02508">Link</a></td>
+    </tr>
+
+    <tr>
+      <td rowspan="5"><b>Temporal and Structural Consistency</b></td>
+      <td>Boundary Error</td>
+      <td><a href="https://www.sciencedirect.com/science/article/pii/S0167639324000141">Link</a></td>
+    </tr>
+    <tr>
+      <td>WDTW</td>
+      <td><a href="https://arxiv.org/abs/2604.16056">Link</a></td>
+    </tr>
+    <tr>
+      <td>Melody Accuracy</td>
+      <td><a href="https://arxiv.org/abs/2311.07069">Link</a></td>
+    </tr>
+    <tr>
+      <td>Rhythm F1</td>
+      <td><a href="https://arxiv.org/abs/2407.15060">Link</a></td>
+    </tr>
+    <tr>
+      <td>Dynamics Correlation</td>
+      <td><a href="https://arxiv.org/abs/2507.11096">Link</a></td>
+    </tr>
+
+    <tr>
+      <td rowspan="10"><b>Audio Quality and Naturalness</b></td>
+      <td>MOS / CMOS</td>
+      <td><a href="https://www.itu.int/rec/T-REC-P.800.1">Link</a></td>
+    </tr>
+    <tr>
+      <td>MOSNet</td>
+      <td><a href="https://arxiv.org/abs/1904.08352">Link</a></td>
+    </tr>
+    <tr>
+      <td>DNSMOS</td>
+      <td><a href="https://arxiv.org/abs/2010.15258">Link</a></td>
+    </tr>
+    <tr>
+      <td>NISQA</td>
+      <td><a href="https://arxiv.org/abs/2104.09494">Link</a></td>
+    </tr>
+    <tr>
+      <td>FAD</td>
+      <td><a href="https://arxiv.org/abs/1812.08466">Link</a></td>
+    </tr>
+    <tr>
+      <td>AuditScore / AuditEval</td>
+      <td><a href="https://arxiv.org/abs/2508.11966">Link</a></td>
+    </tr>
+    <tr>
+      <td>TTA-Bench</td>
+      <td><a href="https://ojs.aaai.org/index.php/AAAI/article/view/40639">Link</a></td>
+    </tr>
+    <tr>
+      <td>AudioEval</td>
+      <td><a href="https://arxiv.org/abs/2510.14570">Link</a></td>
+    </tr>
+    <tr>
+      <td>T2A-Feedback</td>
+      <td><a href="https://aclanthology.org/2025.acl-long.1147/">Link</a></td>
+    </tr>
+    <tr>
+      <td>MuseCPBench</td>
+      <td><a href="https://arxiv.org/abs/2512.14629">Link</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -233,20 +418,11 @@ Foundation-model-based audio editing still faces several system-level challenges
 
 If you find this survey useful, please consider citing our paper.
 
-```bibtex
-@article{audioeditsurvey2026,
-  title   = {Audio Editing in the Era of Foundation Models: A Survey},
-  author  = {Anonymous Authors},
-  journal = {arXiv preprint},
-  year    = {2026}
-}
-```
+
 
 ---
 
-## Contributing
 
-We welcome issues and pull requests. If you find missing papers, datasets, benchmarks, or tools related to audio editing, please feel free to open an issue or submit a pull request.
 
 ## License
 
