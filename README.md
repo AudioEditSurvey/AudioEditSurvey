@@ -205,7 +205,6 @@ Figure 3: Available Datasets
       <td>MusicYOLO</td>
       <td><a href="https://ieeexplore.ieee.org/abstract/document/9746684">Link</a></td>
     </tr>
-
     <tr>
       <td rowspan="6"><b>Semantic Annotation Tools</b></td>
       <td>FunASR</td>
@@ -300,8 +299,6 @@ Figure 3: Available Datasets
       <td>Pitch and Rhythm Accuracy</td>
       <td><a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/94b472a1842cd7c56dcb125fb2765fbd-Abstract-Conference.html">Link</a></td>
     </tr>
-
-
     <tr>
       <td rowspan="6"><b>Preservation and Locality</b></td>
       <td>Speaker Similarity / X-vector</td>
