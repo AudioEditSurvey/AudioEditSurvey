@@ -284,7 +284,7 @@ Figure 3: Available Datasets
   </thead>
   <tbody>
     <tr>
-      <td rowspan="5"><b>Edit Success and Instruction Adherence</b></td>
+      <td rowspan="4"><b>Edit Success and Instruction Adherence</b></td>
       <td>WER / CER</td>
       <td><a href="https://dl.acm.org/doi/abs/10.1145/3565472.3595606">Link</a></td>
     </tr>
