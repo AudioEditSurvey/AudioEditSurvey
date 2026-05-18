@@ -230,7 +230,6 @@ Figure 3: Available Datasets
       <td>Qwen3-Omni</td>
       <td><a href="https://arxiv.org/abs/2509.17765">Link</a></td>
     </tr>
-
     <tr>
       <td rowspan="9"><b>Pair Construction Tools</b></td>
       <td>MaskGCT</td>
@@ -324,7 +323,6 @@ Figure 3: Available Datasets
       <td>SI-SDR</td>
       <td><a href="https://arxiv.org/abs/1811.02508">Link</a></td>
     </tr>
-
     <tr>
       <td rowspan="5"><b>Temporal and Structural Consistency</b></td>
       <td>Boundary Error</td>
@@ -346,7 +344,6 @@ Figure 3: Available Datasets
       <td>Dynamics Correlation</td>
       <td><a href="https://arxiv.org/abs/2507.11096">Link</a></td>
     </tr>
-
     <tr>
       <td rowspan="10"><b>Audio Quality and Naturalness</b></td>
       <td>MOS / CMOS</td>
