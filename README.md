@@ -29,8 +29,7 @@
 
 # What's New
 
-- **2026.xx.xx:** We release the initial repository of **AudioEditSurvey**.
-- **2026.xx.xx:** The paper and full paper list will be updated soon.
+- **2026.5.18:** The paper and full paper list will be updated soon.
 
 ---
 
@@ -38,7 +37,7 @@
 
 This repository maintains the project page and paper list for **AudioEditSurvey: Foundation-Model Era Audio Editing**.
 
-Audio editing is moving from low-level waveform manipulation and expert-designed digital audio workstation operations toward high-level, instruction-driven, and reference-guided generative editing. In the foundation-model era, users can edit speech, music, and general audio through natural language instructions, reference audio, symbolic controls, masks, or temporal regions. This survey aims to provide a systematic overview of recent progress in audio editing, covering task formulation, taxonomy, model architectures, training paradigms, training-free editing strategies, datasets, evaluation protocols, and open challenges.
+
 
 > **Abstract**  
 > Recent foundation models have significantly advanced audio generation and understanding, enabling audio editing systems that can modify speech, music, and general sound according to natural language instructions, reference samples, masks, or other multimodal controls. Compared with traditional signal-processing or DAW-based editing, foundation-model-based audio editing aims to perform semantic, acoustic, and instance-level modifications while preserving non-target content and maintaining perceptual quality. Despite rapid progress, the field remains fragmented across domains, tasks, architectures, training strategies, datasets, and evaluation protocols. This survey reviews representative audio editing methods, organizes them under a unified taxonomy, summarizes core model paradigms and resources, and discusses key challenges toward controllable, faithful, efficient, and general-purpose audio editing.
@@ -49,85 +48,41 @@ Audio editing is moving from low-level waveform manipulation and expert-designed
 
 ### Organization of This Survey
 
-```mermaid
-flowchart LR
-    A[Problem Definition] --> B[Taxonomy]
-    B --> C[Core Paradigms]
-    C --> D[Resources]
-    D --> E[Challenges & Future Directions]
-
-    B --> B1[Semantic Editing]
-    B --> B2[Acoustic Editing]
-    B --> B3[Instance Editing]
-
-    C --> C1[Codec / LLM-based Paradigm]
-    C --> C2[Diffusion / Flow-based Paradigm]
-    C --> C3[Training vs. Training-free Editing]
-
-    D --> D1[Datasets]
-    D --> D2[Evaluation]
-    D --> D3[Tools]
-```
 
 Figure 1: Organization of the survey.
 
 ### Taxonomy of Audio Editing
 
-We formulate audio editing as a conditional transformation from an input audio signal to an edited audio signal under user-specified controls. The editing goal is not only to generate the target content, but also to preserve the non-target regions and maintain perceptual consistency.
 
-```mermaid
-mindmap
-  root((Audio Editing))
-    Editing Scope
-      Semantic Editing
-        Content insertion
-        Content replacement
-        Content deletion
-      Acoustic Editing
-        Timbre
-        Prosody
-        Emotion
-        Loudness
-        Style
-      Instance Editing
-        Source-level editing
-        Speaker or instrument editing
-        Event-level editing
-    Domain
-      Speech
-      Music
-      General Audio
-    Condition
-      Text instruction
-      Reference audio
-      Mask or time span
-      Symbolic control
-      Multimodal prompt
-    Paradigm
-      Codec / LLM-based
-      Diffusion-based
-      Flow-based
-      Hybrid systems
-      Training-free editing
-    Evaluation
-      Edit success
-      Context preservation
-      Control fidelity
-      Perceptual quality
-```
 
 Figure 2: A high-level taxonomy of audio editing.
 
-### Representative Audio Editing Methods
+## Representative Audio Editing Models
 
-| Category | Domain | Representative Methods | Main Editing Capability |
-|---|---|---|---|
-| Text-based speech editing | Speech | EditSpeech, CampNet, FluentEditor, FluentEditor2, A3T | Word-level or utterance-level speech content editing |
-| Codec/LLM-based editing | Speech / General | VoiceCraft, SpeechX, AudioLM-style codec models | Token-level generation and editing with context preservation |
-| Instruction-based editing | Speech / Music / General | InstructSpeech, InstructME, Instruct-MusicGen, AUDIT | Natural-language instruction following |
-| Diffusion-based editing | Music / General | AudioLDM-style editors, AudioEditor, PPAE, AudioMorphix | Latent-space editing, prompt editing, and attention control |
-| Flow-based editing | Music / General | MelodyFlow and related flow-matching editors | Efficient continuous audio transformation |
-| Training-free editing | Music / General | DDPM/DDIM inversion, attention-control editing, mask-guided editing | Editing without additional task-specific training |
+## Representative Audio Editing Methods
+
+| Model | Category | Paper URL |
+|---|---|---|
+| FluentSpeech | Training-based / Diffusion | https://arxiv.org/abs/2305.13612 |
+| VoiceCraft | Training-based / Codec | https://arxiv.org/abs/2403.16973 |
+| uSee | Training-based / Diffusion | https://arxiv.org/abs/2310.00900 |
+| SpeechX | Training-based / Codec | https://arxiv.org/abs/2308.06873 |
+| CosyEdit | Training-based / Codec | https://arxiv.org/abs/2601.05329 |
+| AUDIT | Training-based / Diffusion | https://arxiv.org/abs/2304.00830 |
+| SAO-Instruct | Training-based / Diffusion | https://arxiv.org/abs/2510.22795 |
+| Non-Rigid Prompt Edit | Training-based / Diffusion | https://arxiv.org/abs/2310.12858 |
+| InstructME | Training-based / Diffusion | https://arxiv.org/abs/2308.14360 |
+| Instruct-MusicGen | Training-based / Codec | https://arxiv.org/abs/2405.18386 |
+| AST | Training-free / Diffusion | https://arxiv.org/abs/2604.16056 |
+| EdiTTS | Training-free / Diffusion | https://arxiv.org/abs/2110.02584 |
+| DDPM Inversion | Training-free / Diffusion | https://arxiv.org/abs/2402.10009 |
+| AudioEditor | Training-free / Diffusion | https://arxiv.org/abs/2409.12466 |
+| PPAE | Training-free / Diffusion | https://arxiv.org/abs/2406.04350 |
+| AudioMorphix | Training-free / Diffusion | https://arxiv.org/abs/2505.16076 |
+| MelodyFlow | Training-free / Flow | https://arxiv.org/abs/2407.03648 |
+| MEDIC | Training-free / Diffusion | https://arxiv.org/abs/2407.13220 |
+| MusicMagus | Training-free / Diffusion | https://arxiv.org/abs/2402.06178 |
+| MusRec | Training-free / Flow | https://arxiv.org/abs/2511.04376 |
 
 ---
 
