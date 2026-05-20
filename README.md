@@ -1,6 +1,6 @@
 <div align="center">
 
-# AudioEditSurvey
+# 🎧 AudioEditSurvey
 
 ### Audio Editing in the Era of Foundation Models: A Survey
 
@@ -30,13 +30,13 @@
 8. [Systemization Challenges and Future Directions](#systemization-challenges-and-future-directions)  
 9. [Citation](#citation)
 
-# What's New
+# 📰 What's New
 
 - **2026.5.18:** The paper and full paper list will be updated soon.
 
 ---
 
-## Introduction
+## 📌 Introduction
 
 This repository maintains the project page and paper list for **AudioEditSurvey: Audio Editing in the Era of Foundation Models**.
 
@@ -45,23 +45,23 @@ This repository maintains the project page and paper list for **AudioEditSurvey:
 
 ---
 
-## Scope
+## 🎯 Scope
 
 In this survey, we focus on works that make direct contributions to audio editing in the era of foundation models. To ensure a precise and focused discussion, we adopt two main inclusion criteria: (1) the task should center on audio editing, which we define as modifying the acoustic attributes, instances, or content of an existing audio recording, without transformations so substantial that they amount to generating an entirely new audio sample; (2) the method should rely on mainstream audio foundation model paradigms.
 Accordingly, we do not cover works primarily focused on audio generation, nor do we provide an extensive discussion of signal-processing-based audio editing methods. In addition, to maintain a focused scope, spatial audio\footnote{Spatial audio refers to multi-channel audio formats, such as binaural stereo and first-order Ambisonics (FOA).} and related editing techniques are beyond the main scope of this survey.
 
 ---
 
-## Overall
+## 🧭 Overall
 
-### Organization of This Survey
+### 🗂️ Organization of This Survey
 
 
 Figure 1: Organization of the survey.
 
 
 
-### Taxonomy of Audio Editing
+### 🧩 Taxonomy of Audio Editing
 
 
 
@@ -72,7 +72,7 @@ Figure 1: Organization of the survey.
 | Semantic Editing | Modifies high-level interpretable information conveyed by audio while maintaining task-irrelevant properties. | linguistic editing, expressive editing, stylistic editing |
 | Instance Editing | Manipulates identifiable audio entities while preserving the remaining scene and source relationships. | replacement, deletion/extraction, insertion, overlay/remixing |
 
-### Representative Audio Editing Methods
+### 📚 Representative Audio Editing Methods
 
 | Model | Category | Paper URL |
 |---|---|---|
@@ -99,7 +99,7 @@ Figure 1: Organization of the survey.
 
 ---
 
-## Foundation Models for Audio Editing
+## 🏗️ Foundation Models for Audio Editing
 
 ### 1. Early Neural Editing Models
 
@@ -119,7 +119,7 @@ Instruction-conditioned and multimodal interfaces for audio editing provide high
 
 ---
 
-## Training-based Audio Editing
+## 🧪 Training-based Audio Editing
 
 Training-based approaches refer to audio editing methods that learn editing behaviors from supervised pairs, pseudo-pairs, or instruction-based triplets before inference. These methods explicitly optimize editing objectives, condition following, and preservation constraints, enabling stable and controllable editing. We group existing works into three categories based on their supervision and conditioning mechanisms, and discuss their core methods and functional scopes.
 
@@ -132,7 +132,7 @@ Training-based approaches refer to audio editing methods that learn editing beha
 
 ---
 
-## Training-free Audio Editing
+## 🪄 Training-free Audio Editing
 
 Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into three common categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
 
@@ -147,13 +147,13 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 
 ---
 
-## Resources
+## 📦 Resources
 
-### Available Datasets
+### 🗃️ Available Datasets
 Figure 3: Available Datasets
 
 
-### Data Tools
+### 🛠️ Data Tools
 
 <table>
   <thead>
@@ -270,7 +270,7 @@ Figure 3: Available Datasets
   </tbody>
 </table>
 
-### Evaluation Protocols and Benchmarks
+### 📏 Evaluation Protocols and Benchmarks
 
 <table>
   <thead>
@@ -390,7 +390,7 @@ Figure 3: Available Datasets
 
 ---
 
-## Systemization Challenges and Future Directions
+## 🔮 Systemization Challenges and Future Directions
 
 Foundation-model-based audio editing still faces several system-level challenges:
 
@@ -408,7 +408,7 @@ Foundation-model-based audio editing still faces several system-level challenges
 
 ---
 
-## Citation
+## 📝 Citation
 
 If you find this survey useful, please consider citing our paper.
 
@@ -418,6 +418,6 @@ If you find this survey useful, please consider citing our paper.
 
 
 
-## License
+## 📄 License
 
 This repository is released for academic and research purposes. The license will be updated soon.
