@@ -54,14 +54,15 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 
 ## 🧭 Overall
 
-### 🗂️ Organization of This Survey
+### 🗂️ Taxonomy Overview
+
+![Taxonomy of Audio Editing Tasks](taxonomy_overview.png)
+
+*Figure 1: Taxonomy of audio editing tasks.*
 
 
-Figure 1: Organization of the survey.
 
-
-
-### 🧩 Taxonomy of Audio Editing
+### 🧩 Taxonomy Details
 
 
 
@@ -122,6 +123,16 @@ Instruction-conditioned and multimodal interfaces for audio editing provide high
 ## 🧪 Training-based Audio Editing
 
 Training-based approaches refer to audio editing methods that learn editing behaviors from supervised pairs, pseudo-pairs, or instruction-based triplets before inference. These methods explicitly optimize editing objectives, condition following, and preservation constraints, enabling stable and controllable editing. We group existing works into three categories based on their supervision and conditioning mechanisms, and discuss their core methods and functional scopes.
+```markdown
+<p align="center">
+  <img src="train-based.png" alt="Overview of training-based audio editing methods" width="900">
+</p>
+
+<p align="center">
+  <em>Figure 2: Overview of training-based audio editing methods.</em>
+</p>
+```
+
 
 | Paradigm | Description | Representative Scope |
 |---|---|---|
@@ -135,6 +146,16 @@ Training-based approaches refer to audio editing methods that learn editing beha
 ## 🪄 Training-free Audio Editing
 
 Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into three common categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
+```markdown
+<p align="center">
+  <img src="train-free.png" alt="Overview of training-free audio editing methods" width="900">
+</p>
+
+<p align="center">
+  <em>Figure 3: Overview of training-free audio editing methods.</em>
+</p>
+```
+
 
 | Paradigm | Description | Representative Scope |
 |---|---|---|
@@ -149,8 +170,6 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 
 ## 📦 Resources
 
-### 🗃️ Available Datasets
-Figure 3: Available Datasets
 
 
 ### 🛠️ Data Tools
